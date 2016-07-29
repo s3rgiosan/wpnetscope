@@ -3,7 +3,7 @@
 **Tags:** netscope, analytics, tags, audience    
 **Requires at least:** 4.0    
 **Tested up to:** 4.5    
-**Stable tag:** 1.0.0   
+**Stable tag:** 1.1.0   
 **License:** GPLv2 or later    
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html    
 
@@ -40,6 +40,9 @@ Navigate to the 'netScope' settings page under the Settings menu and paste your 
 4. Activate the plugin in the Plugin dashboard
 
 ## Changelog ##
+
+### 1.1.0 ###
+* Filter for changing the default netscope analytics variable. 
 
 ### 1.0.0 ###
 * Initial release.  

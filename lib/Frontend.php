@@ -66,6 +66,22 @@ class Frontend {
 
 		echo "<script><!--//--><![CDATA[//><!—\r\n";
 
+		/**
+		 * Filter the default netscope analytics variable.
+		 *
+		 * @since  1.1.0
+		 * @param  string Default variable name.
+		 * @return string Possibly-modified variable name.
+		 */
+		$netscope_var = \apply_filters( 'wpnetscope_default_netscope_var', 'GEMIUS' );
+
+		// netScope analytics tag
+		printf(
+			"var %s = '%s';",
+			\esc_html( $netscope_var ),
+			\esc_html( $this->get_netscope_tag() )
+		);
+
 		// netScope account ID
 		$gemius_identifier = trim( \get_option( 'netscope_gemius_identifier' ) );
 		if ( ! empty( $gemius_identifier ) ) {
@@ -75,11 +91,8 @@ class Frontend {
 			);
 		}
 
-		// Analytics Tag
-		$netscope_tag = $this->get_netscope_tag();
-
 		// netScope extra parameters
-		$gemius_extraparameters = $netscope_tag;
+		$gemius_extraparameters = $netscope_var;
 		printf(
 			"var pp_gemius_extraparameters = new Array('gA=%s');",
 			\esc_html( $gemius_extraparameters )
