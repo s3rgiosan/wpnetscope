@@ -108,7 +108,7 @@ class Frontend {
 	 *
 	 * @since  1.0.0
 	 * @access private
-	 * @return string The user-defined netScope tag. Fallback to post permalink.
+	 * @return string The user-defined netScope tag.
 	 */
 	private function get_netscope_tag() {
 
@@ -123,9 +123,42 @@ class Frontend {
 			 * @param  int    The post ID.
 			 * @return string Possibly-modified tag.
 			 */
-			$netscope_tag = \apply_filters( 'wpnetscope_default_netscope_tag', \get_permalink(), \get_the_id() );
+			$netscope_tag = \apply_filters( 'wpnetscope_default_netscope_tag', $this->get_permalink(), \get_the_id() );
 		}
 
 		return preg_replace( '(^https?://)', '', $netscope_tag );
+	}
+
+	/**
+	 * Retrieves the full permalink for the current post/page.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @return string The full permalink. Fallback to post permalink.
+	 */
+	private function get_permalink() {
+
+		if ( \is_front_page() ) {
+			return \home_url( '/' );
+		} else if ( \is_home() && 'page' === \get_option( 'show_on_front' ) ) {
+			return \get_permalink( \get_option( 'page_for_posts' ) );
+		} else if ( \is_tax() || \is_tag() || \is_category() ) {
+			$term = \get_queried_object();
+			return \get_term_link( $term, $term->taxonomy );
+		} else if ( \is_post_type_archive() ) {
+			return \get_post_type_archive_link( \get_post_type() );
+		} else if ( \is_author() ) {
+			return \get_author_posts_url( \get_query_var( 'author' ), \get_query_var( 'author_name' ) );
+		} else if ( \is_archive() && \is_date() ) {
+			if ( \is_day() ) {
+				return \get_day_link( \get_query_var( 'year' ), \get_query_var( 'monthnum' ), \get_query_var( 'day' ) );
+			} else if ( \is_month() ) {
+				return \get_month_link( \get_query_var( 'year' ), \get_query_var( 'monthnum' ) );
+			} else if ( \is_year() ) {
+				return \get_year_link( \get_query_var( 'year' ) );
+			}
+		}
+
+		return \get_permalink();
 	}
 }
