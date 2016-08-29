@@ -41,6 +41,9 @@ Navigate to the 'netScope' settings page under the Settings menu and paste your 
 
 ## Changelog ##
 
+### 1.1.1 ###
+* Fix pp_gemius_extraparameters tag. 
+
 ### 1.1.0 ###
 * Filter for changing the default netscope analytics variable. 
 
