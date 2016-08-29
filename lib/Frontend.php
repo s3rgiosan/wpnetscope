@@ -94,7 +94,7 @@ class Frontend {
 		// netScope extra parameters
 		$gemius_extraparameters = $netscope_var;
 		printf(
-			"var pp_gemius_extraparameters = new Array('gA=%s');",
+			"var pp_gemius_extraparameters = new Array('gA='+%s);",
 			\esc_html( $gemius_extraparameters )
 		);
 
