@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: netScope 1.2.0\n"
+"Project-Id-Version: netScope 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/s3rgiosan/wpnetscope/issues\n"
-"POT-Creation-Date: 2016-08-29 16:36:51+00:00\n"
+"POT-Creation-Date: 2016-10-07 22:09:21+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "netScope"
 msgstr ""
 
-#: lib/Admin.php:90
+#: lib/Admin.php:90 lib/Admin.php:213
 msgid "netScope Settings"
 msgstr ""
 
@@ -36,12 +36,8 @@ msgstr ""
 msgid "Account ID"
 msgstr ""
 
-#: lib/Admin.php:213
-msgid "netScope Analytics"
-msgstr ""
-
-#: lib/Admin.php:248
-msgid "Tag"
+#: lib/Admin.php:246
+msgid "Content-specific Tag"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

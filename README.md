@@ -2,8 +2,8 @@
 **Contributors:** s3rgiosan    
 **Tags:** netscope, analytics, tags, audience    
 **Requires at least:** 4.0    
-**Tested up to:** 4.5    
-**Stable tag:** 1.2.0   
+**Tested up to:** 4.6    
+**Stable tag:** 1.2.1   
 **License:** GPLv2 or later    
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html    
 
@@ -41,8 +41,13 @@ Navigate to the 'netScope' settings page under the Settings menu and paste your 
 
 ## Changelog ##
 
+### 1.2.1 ###
+* Changed the cache key name.  
+* Changed the metabox name.  
+* Changed the input label text.  
+
 ### 1.2.0 ###
-* Improved the retrieved permalink for the current post/page. 
+* Improved the retrieved permalink for the current post/page.  
 
 ### 1.1.1 ###
 * Fix pp_gemius_extraparameters tag. 

@@ -74,7 +74,7 @@ class Admin {
 			\__( 'netScope', 'wpnetscope' ),
 			'manage_options',
 			'netscope',
-			array( $this, 'display_option_page' )
+			array( $this, 'display_options_page' )
 		);
 
 	}
@@ -84,7 +84,7 @@ class Admin {
 	 *
 	 * @since 1.0.0
 	 */
-	public function display_option_page() {
+	public function display_options_page() {
 	?>
 		<div class="wrap">
 			<h1><?php \_e( 'netScope Settings', 'wpnetscope' ); ?></h1>
@@ -174,17 +174,17 @@ class Admin {
 	}
 
 	/**
-	 * Register the analytics meta box.
+	 * Register settings.
 	 *
 	 * @since 1.0.0
 	 */
-	public function register_analytics_meta() {
+	public function register_settings() {
 
 		if ( ! \current_user_can( 'edit_posts' ) ) {
 			return;
 		}
 
-		$post_types = \wp_cache_get( 'netscope_post_types', $this->plugin->get_name() );
+		$post_types = \wp_cache_get( 'wpnetscope_post_types', $this->plugin->get_name() );
 
 		if ( ! $post_types ) {
 
@@ -204,34 +204,32 @@ class Admin {
 				'public'=> true,
 			) ) );
 
-			\wp_cache_set( 'netscope_post_types', $post_types, $this->plugin->get_name(), 600 );
+			\wp_cache_set( 'wpnetscope_post_types', $post_types, $this->plugin->get_name(), 600 );
 		}
 
 		foreach ( $post_types as $post_type ) {
 			\add_meta_box(
-				'netscope_analytics',
-				\__( 'netScope Analytics', 'wpnetscope' ),
-				array( $this, 'display_analytics_meta' ),
+				'wpnetscope_settings',
+				\__( 'netScope Settings', 'wpnetscope' ),
+				array( $this, 'display_settings' ),
 				$post_type
 			);
 		}
-
 	}
 
 	/**
-	 * Output the analytics meta box.
+	 * Output the settings meta box.
 	 *
 	 * @since 1.0.0
 	 * @param \WP_Post $post Current post object.
 	 */
-	public function display_analytics_meta( $post ) {
+	public function display_settings( $post ) {
 
-		\wp_nonce_field( \plugin_basename( __FILE__ ), 'analytics_meta_box_nonce' );
+		\wp_nonce_field( \plugin_basename( __FILE__ ), 'settings_meta_box_nonce' );
 
 		echo '<table class="form-table"><tbody>';
 		$this->display_analytics_tag_fields( $post );
 		echo '</tbody></table>';
-
 	}
 
 	/**
@@ -245,7 +243,7 @@ class Admin {
 		printf(
 			'<th scope="row"><label for="%s">%s:</label></th>',
 			\esc_attr( 'netscope_tag' ),
-			\__( 'Tag', 'wpnetscope' )
+			\__( 'Content-specific Tag', 'wpnetscope' )
 		);
 
 		printf(
@@ -256,18 +254,17 @@ class Admin {
 		echo '</tr>';
 	}
 
-
 	/**
-	 * Save the analytics meta.
+	 * Save settings.
 	 *
 	 * @since 1.0.0
 	 * @param int $post_id The post ID.
 	 */
-	public function save_analytics_meta( $post_id ) {
+	public function save_settings( $post_id ) {
 
 		// Verify meta box nonce
-		if ( ! isset( $_POST['analytics_meta_box_nonce'] ) ||
-			! \wp_verify_nonce( $_POST['analytics_meta_box_nonce'], \plugin_basename( __FILE__ ) ) ) {
+		if ( ! isset( $_POST['settings_meta_box_nonce'] ) ||
+			! \wp_verify_nonce( $_POST['settings_meta_box_nonce'], \plugin_basename( __FILE__ ) ) ) {
 			return;
 		}
 
@@ -292,7 +289,6 @@ class Admin {
 		} else {
 			\delete_post_meta( $post_id, 'netscope_tag' );
 		}
-
 	}
 
 	/**

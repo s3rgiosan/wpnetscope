@@ -67,6 +67,27 @@ class Plugin {
 	}
 
 	/**
+	 * The name of the plugin used to uniquely identify it within the context of
+	 * WordPress and to define internationalization functionality.
+	 *
+	 * @since  1.0.0
+	 * @return string The name of the plugin.
+	 */
+	public function get_name() {
+		return $this->name;
+	}
+
+	/**
+	 * Retrieve the version number of the plugin.
+	 *
+	 * @since  1.0.0
+	 * @return string The version number of the plugin.
+	 */
+	public function get_version() {
+		return $this->version;
+	}
+
+	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
 	 * Uses the I18n class in order to set the domain and to register the hook
@@ -92,8 +113,8 @@ class Plugin {
 		$admin = new Admin( $this );
 		\add_action( 'admin_menu',     array( $admin, 'admin_settings_menu' ) );
 		\add_action( 'admin_init',     array( $admin, 'admin_settings_init' ) );
-		\add_action( 'add_meta_boxes', array( $admin, 'register_analytics_meta' ) );
-		\add_action( 'save_post',      array( $admin, 'save_analytics_meta' ) );
+		\add_action( 'add_meta_boxes', array( $admin, 'register_settings' ) );
+		\add_action( 'save_post',      array( $admin, 'save_settings' ) );
 	}
 
 	/**
@@ -106,26 +127,5 @@ class Plugin {
 	private function define_frontend_hooks() {
 		$frontend = new Frontend( $this );
 		\add_action( 'wp_footer', array( $frontend, 'add_snippet' ), 99 );
-	}
-
-	/**
-	 * The name of the plugin used to uniquely identify it within the context of
-	 * WordPress and to define internationalization functionality.
-	 *
-	 * @since  1.0.0
-	 * @return string The name of the plugin.
-	 */
-	public function get_name() {
-		return $this->name;
-	}
-
-	/**
-	 * Retrieve the version number of the plugin.
-	 *
-	 * @since  1.0.0
-	 * @return string The version number of the plugin.
-	 */
-	public function get_version() {
-		return $this->version;
 	}
 }
