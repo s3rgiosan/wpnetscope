@@ -1,9 +1,11 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/696fcc2ec05b4dcba4810c37c7623a88)](https://www.codacy.com/app/s3rgiosan/wpnetscope?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=s3rgiosan/wpnetscope&amp;utm_campaign=Badge_Grade)
+
 # netScope #
-**Contributors:** s3rgiosan    
+**Contributors:** [s3rgiosan](https://profiles.wordpress.org/s3rgiosan)  
 **Tags:** netscope, analytics, tags, audience    
 **Requires at least:** 4.0    
 **Tested up to:** 4.6    
-**Stable tag:** 1.2.1   
+**Stable tag:** 1.2.2   
 **License:** GPLv2 or later    
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html    
 
@@ -40,6 +42,9 @@ Navigate to the 'netScope' settings page under the Settings menu and paste your 
 4. Activate the plugin in the Plugin dashboard
 
 ## Changelog ##
+
+### 1.2.2 ###
+* Added Codacy (a tool for automated code review) badge.  
 
 ### 1.2.1 ###
 * Changed the cache key name.  

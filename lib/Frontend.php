@@ -83,19 +83,19 @@ class Frontend {
 		);
 
 		// netScope account ID
-		$gemius_identifier = trim( \get_option( 'netscope_gemius_identifier' ) );
-		if ( ! empty( $gemius_identifier ) ) {
+		$identifier = trim( \get_option( 'netscope_gemius_identifier' ) );
+		if ( ! empty( $identifier ) ) {
 			printf(
 				"var pp_gemius_identifier = '%s';",
-				\esc_html( $gemius_identifier )
+				\esc_html( $identifier )
 			);
 		}
 
 		// netScope extra parameters
-		$gemius_extraparameters = $netscope_var;
+		$extraparameters = $netscope_var;
 		printf(
 			"var pp_gemius_extraparameters = new Array('gA='+%s);",
-			\esc_html( $gemius_extraparameters )
+			\esc_html( $extraparameters )
 		);
 
 		echo "var pp_gemius_event = pp_gemius_event || function() {var x = window.gemius_sevents = window.gemius_sevents || []; x[x.length]=arguments;}; ( function(d,t) { var ex; try { var gt=d.createElement(t),s=d.getElementsByTagName(t)[0],l='http'+((location.protocol=='https:')?'s://secure':'://data'); gt.async='true'; gt.src=l+'.netscope.marktest.pt/netscope-gemius.js'; s.parentNode.appendChild(gt);} catch (ex){}}(document,'script'));";

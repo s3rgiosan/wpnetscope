@@ -286,9 +286,10 @@ class Admin {
 		// Update/delete the analytics tag
 		if ( ! empty( $_POST['netscope_tag'] ) ) {
 			\update_post_meta( $post_id, 'netscope_tag', $this->sanitize_tag( $_POST['netscope_tag'] ) );
-		} else {
-			\delete_post_meta( $post_id, 'netscope_tag' );
+			return;
 		}
+
+		\delete_post_meta( $post_id, 'netscope_tag' );
 	}
 
 	/**
