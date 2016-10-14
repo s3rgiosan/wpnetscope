@@ -27,6 +27,6 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "4.8.23"
+    "dangoodman/composer-for-wordpress": "^1.0"
   }
 }
