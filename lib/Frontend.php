@@ -62,6 +62,11 @@ class Frontend {
 			return;
 		}
 
+		$netscope_tag = $this->get_netscope_tag();
+		if ( empty( $netscope_tag ) ) {
+			return;
+		}
+
 		echo "<script><!--//--><![CDATA[//><!—\r\n";
 
 		/**
@@ -77,7 +82,7 @@ class Frontend {
 		printf(
 			"var %s='%s';",
 			\esc_html( $netscope_var ),
-			\esc_html( $this->get_netscope_tag() )
+			\esc_html( $this->parse_netscope_tag( $netscope_tag ) )
 		);
 
 		// netScope account ID.
@@ -105,12 +110,16 @@ class Frontend {
 	 * Get a netScope tag.
 	 *
 	 * @since  1.0.0
-	 * @access private
+	 * @param  int|false Optional, default to current post ID. The post ID.
 	 * @return string The user-defined netScope tag.
 	 */
-	private function get_netscope_tag() {
+	public function get_netscope_tag( $post_id = false ) {
 
-		$netscope_tag = \get_post_meta( \get_the_id(), 'netscope_tag', true );
+		if ( empty( $post_id ) ) {
+			$post_id = \get_the_id();
+		}
+
+		$netscope_tag = \get_post_meta( $post_id, 'netscope_tag', true );
 
 		if ( empty( $netscope_tag ) ) {
 			/**
@@ -121,7 +130,23 @@ class Frontend {
 			 * @param  int    The post ID.
 			 * @return string Possibly-modified tag.
 			 */
-			$netscope_tag = \apply_filters( 'wpnetscope_default_netscope_tag', $this->get_permalink(), \get_the_id() );
+			$netscope_tag = \apply_filters( 'wpnetscope_default_netscope_tag', $this->get_permalink(), $post_id );
+		}
+
+		return $netscope_tag;
+	}
+
+	/**
+	 * Parse a netScope tag.
+	 *
+	 * @since  1.0.0
+	 * @param  string The netScope tag.
+	 * @return string The parsed netScope tag.
+	 */
+	public function parse_netscope_tag( $netscope_tag ) {
+
+		if ( empty( $netscope_tag ) ) {
+			return '';
 		}
 
 		return preg_replace( '(^https?://)', '', $netscope_tag );
@@ -131,10 +156,9 @@ class Frontend {
 	 * Retrieves the full permalink for the current post/page.
 	 *
 	 * @since  1.0.0
-	 * @access private
 	 * @return string The full permalink. Fallback to post permalink.
 	 */
-	private function get_permalink() {
+	public function get_permalink() {
 
 		if ( \is_front_page() ) {
 			return \home_url( '/' );
