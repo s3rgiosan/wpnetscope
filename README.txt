@@ -1,81 +1,93 @@
 === netScope ===
-Contributors: s3rgiosan  
-Tags: netscope, analytics, tags, audience  
-Requires at least: 4.0  
-Tested up to: 4.6  
-Stable tag: 1.2.3 
-License: GPLv2 or later  
-License URI: http://www.gnu.org/licenses/gpl-2.0.html  
+Contributors: s3rgiosan
+Tags: netscope, analytics, tags, audience
+Requires at least: 4.0
+Tested up to: 5.1
+Stable tag: 1.2.4
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easy integration of netScope into your WordPress website.  
+Easy integration of netScope into your WordPress website.
 
 == Description ==
 
-[netScope](http://netscope.marktest.pt/) is a website-centric internet traffic measurement system.
+[netScope](http://net.marktest.pt/netscope/) is a website-centric internet traffic measurement system.
 
-This plugin allows you to easily integrate netScope into your WordPress website.  
+This plugin allows you to easily integrate [netScope](http://net.marktest.pt/netscope/) code into your WordPress website.
 
-= Usage =
+Pull requests are welcome on [Github](https://github.com/s3rgiosan/wpnetscope).
 
-Navigate to the 'netScope' settings page under the Settings menu and paste your snippet.  
+= Features: =
+
+* Add content-specific tags
 
 == Installation ==
 
-= Dashboard =
+= Automated Installation =
 
-1. Go to the 'Plugins' menu, and choose 'Add New'.
-2. Search for 'wpnetscope', and then click 'Install Now'.
-2. Click 'Activate'.
+1. Go to the "Plugins" menu, and choose "Add New".
+2. Search for "wpnetscope", and then click "Install Now".
+2. Click "Activate".
 
-= FTP =
+= Manual Alternatives =
 
 1. Download and extract the .zip file.
 2. Upload the unzipped folder to the `/wp-content/plugins/` directory.
 3. Activate the plugin through the 'Plugins' menu.
 
-= Composer =
-
 `composer require s3rgiosan/wpnetscope`
+
+= Configuration =
+
+After installation, configure the plugin by visiting Settings -> netScope and entering your Account ID.
+
+== Support ==
+
+For questions, feature requests, and support concerning the netScope plugin, please refer to [Github](https://github.com/s3rgiosan/wpnetscope).
 
 == Frequently Asked Questions ==
 
-= Where can I report bugs? =
+= Do I need a netScope account to use this plugin? =
 
-Bugs can be reported on the [GitHub repository](https://github.com/s3rgiosan/wpnetscope/issues).
+Yes.
 
-= How can I contribute? =
+= Where can I find out more about netScope? =
 
-Join in on our [GitHub repository](https://github.com/s3rgiosan/wpnetscope) and read our [contribution](https://github.com/s3rgiosan/wpnetscope/blob/master/CONTRIBUTING.md) guidelines.
+Visit the netScope [website](http://net.marktest.pt/netscope/) to learn more about netScope.
 
 == Changelog ==
 
+= 1.2.4 =
+* Tested with WordPress 5.1.
+* Added plugin action links.
+
 = 1.2.3 =
-* Added Code Climate integration.  
+* Added Code Climate integration.
 * Added moar badges (yes I am a badge poser).
-* Added contribution guidelines.  
-* Updated README. 
+* Added contribution guidelines.
+* Updated README.
 
 = 1.2.2 =
-* Added Codacy (a tool for automated code review) badge.  
+* Added Codacy (a tool for automated code review) badge.
 
 = 1.2.1 =
-* Changed the cache key name.  
-* Changed the metabox name.  
-* Changed the input label text.  
+* Changed the cache key name.
+* Changed the metabox name.
+* Changed the input label text.
 
 = 1.2.0 =
-* Improved the retrieved permalink for the current post/page.  
+* Improved the retrieved permalink for the current post/page.
 
 = 1.1.1 =
-* Fix pp_gemius_extraparameters tag. 
+* Fix pp_gemius_extraparameters tag.
 
 = 1.1.0 =
-* Filter for changing the default netscope analytics variable. 
+* Filter for changing the default netscope analytics variable.
 
 = 1.0.0 =
-* Initial release.  
+* Initial release.
 
 == Upgrade Notice ==
 
-= 1.0 =  
-Initial release.  
+= 1.0 =
+Initial release.

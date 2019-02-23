@@ -1,22 +1,11 @@
 <?php
-/**
- * The public-facing functionality of the plugin.
- *
- * @link       https://github.com/s3rgiosan/wpnetscope/
- * @since      1.0.0
- *
- * @package    netScope
- * @subpackage netScope/lib
- */
 
-namespace s3rgiosan\netScope;
+namespace s3rgiosan\WP\Plugin\netScope;
 
 /**
  * The public-facing functionality of the plugin.
  *
- * @package    netScope
- * @subpackage netScope/lib
- * @author     Sérgio Santos <me@s3rgiosan.com>
+ * @since   1.0.0
  */
 class Frontend {
 
@@ -37,6 +26,15 @@ class Frontend {
 	 */
 	public function __construct( Plugin $plugin ) {
 		$this->plugin = $plugin;
+	}
+
+	/**
+	 * Register hooks.
+	 *
+	 * @since 1.0.0
+	 */
+	public function register() {
+		\add_action( 'wp_footer', [ $this, 'add_snippet' ], 99 );
 	}
 
 	/**
@@ -75,30 +73,30 @@ class Frontend {
 		 */
 		$netscope_var = \apply_filters( 'wpnetscope_default_netscope_var', 'GEMIUS' );
 
-		// netScope analytics tag
+		// netScope analytics tag.
 		printf(
-			"var %s = '%s';",
+			"var %s='%s';",
 			\esc_html( $netscope_var ),
 			\esc_html( $this->get_netscope_tag() )
 		);
 
-		// netScope account ID
+		// netScope account ID.
 		$identifier = trim( \get_option( 'netscope_gemius_identifier' ) );
 		if ( ! empty( $identifier ) ) {
 			printf(
-				"var pp_gemius_identifier = '%s';",
+				"var pp_gemius_identifier='%s';",
 				\esc_html( $identifier )
 			);
 		}
 
-		// netScope extra parameters
+		// netScope extra parameters.
 		$extraparameters = $netscope_var;
 		printf(
-			"var pp_gemius_extraparameters = new Array('gA='+%s);",
+			"var pp_gemius_extraparameters=new Array('gA='+%s);",
 			\esc_html( $extraparameters )
 		);
 
-		echo "var pp_gemius_event = pp_gemius_event || function() {var x = window.gemius_sevents = window.gemius_sevents || []; x[x.length]=arguments;}; ( function(d,t) { var ex; try { var gt=d.createElement(t),s=d.getElementsByTagName(t)[0],l='http'+((location.protocol=='https:')?'s://secure':'://data'); gt.async='true'; gt.src=l+'.netscope.marktest.pt/netscope-gemius.js'; s.parentNode.appendChild(gt);} catch (ex){}}(document,'script'));";
+		echo "var pp_gemius_event=pp_gemius_event || function() {var x=window.gemius_sevents=window.gemius_sevents || []; x[x.length]=arguments;}; ( function(d,t) { var ex; try { var gt=d.createElement(t),s=d.getElementsByTagName(t)[0],l='http'+((location.protocol=='https:')?'s://secure':'://data'); gt.async='true'; gt.src=l+'.netscope.marktest.pt/netscope-gemius.js'; s.parentNode.appendChild(gt);} catch (ex){}}(document,'script'));";
 
 		echo "\r\n//--><!]]></script>";
 	}
@@ -140,21 +138,35 @@ class Frontend {
 
 		if ( \is_front_page() ) {
 			return \home_url( '/' );
-		} else if ( \is_home() && 'page' === \get_option( 'show_on_front' ) ) {
+		}
+
+		if ( \is_home() && 'page' === \get_option( 'show_on_front' ) ) {
 			return \get_permalink( \get_option( 'page_for_posts' ) );
-		} else if ( \is_tax() || \is_tag() || \is_category() ) {
+		}
+
+		if ( \is_tax() || \is_tag() || \is_category() ) {
 			$term = \get_queried_object();
 			return \get_term_link( $term, $term->taxonomy );
-		} else if ( \is_post_type_archive() ) {
+		}
+
+		if ( \is_post_type_archive() ) {
 			return \get_post_type_archive_link( \get_post_type() );
-		} else if ( \is_author() ) {
+		}
+
+		if ( \is_author() ) {
 			return \get_author_posts_url( \get_query_var( 'author' ), \get_query_var( 'author_name' ) );
-		} else if ( \is_archive() && \is_date() ) {
+		}
+
+		if ( \is_archive() && \is_date() ) {
 			if ( \is_day() ) {
 				return \get_day_link( \get_query_var( 'year' ), \get_query_var( 'monthnum' ), \get_query_var( 'day' ) );
-			} else if ( \is_month() ) {
+			}
+
+			if ( \is_month() ) {
 				return \get_month_link( \get_query_var( 'year' ), \get_query_var( 'monthnum' ) );
-			} else if ( \is_year() ) {
+			}
+
+			if ( \is_year() ) {
 				return \get_year_link( \get_query_var( 'year' ) );
 			}
 		}
